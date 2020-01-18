@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentation", "1 - Apresentation", "{C68CF019-5A7A-4C94-9BC4-A637E1543391}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{9B797334-3026-4D82-88A8-AE9036ECDED4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Shared", "4 - Shared", "{7D693FD0-D4FC-4F3B-AD7D-513F57035CF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{AF73DE0C-28B6-4C9C-A0F6-5B651157C444}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Tests", "5 - Tests", "{FD368B0E-063B-4230-8E21-4DAEE89A58CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreStore.Api", "CoreStore.Api\CoreStore.Api.csproj", "{C9743D86-5BA7-47E0-97E0-1C8EC2C746F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9743D86-5BA7-47E0-97E0-1C8EC2C746F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9743D86-5BA7-47E0-97E0-1C8EC2C746F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9743D86-5BA7-47E0-97E0-1C8EC2C746F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9743D86-5BA7-47E0-97E0-1C8EC2C746F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C9743D86-5BA7-47E0-97E0-1C8EC2C746F8} = {C68CF019-5A7A-4C94-9BC4-A637E1543391}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F22F778-9D54-4B3D-A6CE-9255E21ACC9F}
+	EndGlobalSection
+EndGlobal
