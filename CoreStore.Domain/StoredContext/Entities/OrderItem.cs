@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoreStore.Domain.StoredContext
+namespace CoreStore.Domain.StoredContext.Entities
 {
     public class OrderItem
     {
