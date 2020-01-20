@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CoreStore.Domain.StoredContext.Entities
+﻿namespace CoreStore.Domain.StoredContext.Entities
 {
     public class OrderItem
     {
-        public Product Number { get; set; }
-        public string Quantity { get; set; }
-        public string Price { get; set; }
+        public OrderItem(Product product, decimal quantity)
+        {
+            Product = product;
+            Quantity = quantity;
+            Price = product.Price;
+        }
+        public Product Product { get; private set; }
+        public decimal Quantity { get; private set; }
+        public decimal Price { get; private set; }
     }
 }

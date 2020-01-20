@@ -16,6 +16,7 @@ namespace CoreStore.Tests
                 "123456789",
                 "Rua dos Developers, 305" );
 
+            var order = new Order(c);       
 
         }
     }

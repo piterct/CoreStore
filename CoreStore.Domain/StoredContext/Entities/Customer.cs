@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CoreStore.Domain.StoredContext.Entities
+﻿namespace CoreStore.Domain.StoredContext.Entities
 {
     public class Customer
     {
@@ -28,5 +24,10 @@ namespace CoreStore.Domain.StoredContext.Entities
         public string Email { get; private set; }
         public string Phone { get; private set; }
         public string Address { get; private set; }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
     }
 }
