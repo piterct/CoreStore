@@ -11,7 +11,7 @@ namespace CoreStore.Domain.StoredContext.Entities
         private readonly IList<Delivery> _deliveries;
         public Order(Customer customer)
         {
-            Customer = Customer;
+            Customer = customer;
             CreateDate = DateTime.Now;
             Status = EOrderStatus.Created;
             _items = new List<OrderItem>();
@@ -24,7 +24,7 @@ namespace CoreStore.Domain.StoredContext.Entities
         public EOrderStatus Status { get; private set; }
         public IReadOnlyCollection<OrderItem> Items => _items.ToArray();
         public IReadOnlyCollection<Delivery> Deliveries => _deliveries.ToArray();
-        public object Guild { get; }
+ 
 
 
         public void AddItem(OrderItem item)
@@ -52,6 +52,7 @@ namespace CoreStore.Domain.StoredContext.Entities
         {
             // A cada 5 Produtos é uma entrega
             var deliveries = new List<Delivery>();
+            deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
             var count = 1;
 
             // Quebra as entregas

@@ -10,8 +10,8 @@ namespace CoreStore.Domain.StoredContext.Entities
         public Customer(Name name,
             Document document,
             Email email,
-            string phone,
-            Address address)
+            string phone
+          )
         {
             Name = name;
             Document = document;
