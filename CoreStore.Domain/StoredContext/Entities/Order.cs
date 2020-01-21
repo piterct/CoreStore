@@ -1,11 +1,12 @@
 ﻿using CoreStore.Domain.StoredContext.Enums;
+using FluentValidator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CoreStore.Domain.StoredContext.Entities
 {
-    public class Order
+    public class Order : Notifiable
     {
         private readonly IList<OrderItem> _items;
         private readonly IList<Delivery> _deliveries;
@@ -24,7 +25,7 @@ namespace CoreStore.Domain.StoredContext.Entities
         public EOrderStatus Status { get; private set; }
         public IReadOnlyCollection<OrderItem> Items => _items.ToArray();
         public IReadOnlyCollection<Delivery> Deliveries => _deliveries.ToArray();
- 
+
 
 
         public void AddItem(OrderItem item)
@@ -38,6 +39,10 @@ namespace CoreStore.Domain.StoredContext.Entities
         {
             // Gera o número do pedido
             Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
+            if(_items.Count == 0)
+            {
+                AddNotification("Order", "Este pedido não possui itens");
+            }
         }
 
         public void Pay()

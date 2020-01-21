@@ -1,6 +1,8 @@
-﻿namespace CoreStore.Domain.StoredContext.Entities
+﻿using FluentValidator;
+
+namespace CoreStore.Domain.StoredContext.Entities
 {
-    public class Product
+    public class Product : Notifiable
     {
         public Product(string title,
             string description,

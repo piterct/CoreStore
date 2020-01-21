@@ -28,6 +28,9 @@ namespace CoreStore.Tests
             // Realizei o pedido
             order.Place();
 
+            //Verificar se o pedido é válido
+            var valid = order.IsValid;
+
             // simular o pagamento
             order.Pay();
 
