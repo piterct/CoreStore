@@ -12,7 +12,6 @@ namespace CoreStore.Domain.StoredContext.Entities
         public Order(Customer customer)
         {
             Customer = Customer;
-            Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
             CreateDate = DateTime.Now;
             Status = EOrderStatus.Created;
             _items = new List<OrderItem>();
@@ -33,13 +32,56 @@ namespace CoreStore.Domain.StoredContext.Entities
             _items.Add(item);
         }
 
-        public void AddDelivery(Delivery delivery)
+
+        // Criar um pedido
+        public void Place()
         {
-            _deliveries.Add(delivery);
+            // Gera o número do pedido
+            Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
         }
 
-        // To Place An Order
-        public void Place() { }
+        public void Pay()
+        {
+            // A cada 5 Produtos é uma entrega.
+            Status = EOrderStatus.Paid;
+
+        }
+
+        //Enviar um pedido
+        public void Ship()
+        {
+            // A cada 5 Produtos é uma entrega
+            var deliveries = new List<Delivery>();
+            var count = 1;
+
+            // Quebra as entregas
+            foreach (var item in _items)
+            {
+                if (count == 5)
+                {
+                    count = 1;
+                    deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
+                }
+
+                count++;
+
+            }
+
+            // Envia todas as entregas
+            deliveries.ForEach(x => x.Ship());
+
+            //Adiciona as entregas ao pedido
+            deliveries.ForEach(x => _deliveries.Add(x));
+
+        }
+
+        public void Cancel()
+        {
+            Status = EOrderStatus.Canceled;
+            _deliveries.ToList().ForEach(x => x.Cancel());
+        }
+
+        // Cancelar um pedido
 
     }
 }
