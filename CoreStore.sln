@@ -15,13 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Tests", "5 - Tests", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreStore.Api", "CoreStore.Api\CoreStore.Api.csproj", "{C9743D86-5BA7-47E0-97E0-1C8EC2C746F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreStore.Domain", "CoreStore.Domain\CoreStore.Domain.csproj", "{C508ACDC-FA92-4D28-859C-1DD37CBE5773}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreStore.Domain", "CoreStore.Domain\CoreStore.Domain.csproj", "{C508ACDC-FA92-4D28-859C-1DD37CBE5773}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreStore.Infra", "CoreStore.Infra\CoreStore.Infra.csproj", "{7BF18228-1843-4608-A2AF-2616AC3A9052}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreStore.Infra", "CoreStore.Infra\CoreStore.Infra.csproj", "{7BF18228-1843-4608-A2AF-2616AC3A9052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreStore.Shared", "CoreStore.Shared\CoreStore.Shared.csproj", "{019A5CDA-1059-4889-98F5-266B41017E5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreStore.Shared", "CoreStore.Shared\CoreStore.Shared.csproj", "{019A5CDA-1059-4889-98F5-266B41017E5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreStore.Tests", "CoreStore.Tests\CoreStore.Tests.csproj", "{074F7765-4A3B-4156-9556-CBB6EE7D00F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreStore.Tests", "CoreStore.Tests\CoreStore.Tests.csproj", "{074F7765-4A3B-4156-9556-CBB6EE7D00F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
