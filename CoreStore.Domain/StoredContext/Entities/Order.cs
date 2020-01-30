@@ -28,8 +28,13 @@ namespace CoreStore.Domain.StoredContext.Entities
 
 
 
-        public void AddItem(OrderItem item)
+
+        public void AddItem(Product product, decimal quantity)
         {
+            if (quantity > product.QuantityOnHand)
+                AddNotification("OrdemItem", $"Produto {product.Title} não tem {quantity} em estoque");
+
+            var item = new OrderItem(product, quantity);
             _items.Add(item);
         }
 
@@ -39,7 +44,7 @@ namespace CoreStore.Domain.StoredContext.Entities
         {
             // Gera o número do pedido
             Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
-            if(_items.Count == 0)
+            if (_items.Count == 0)
             {
                 AddNotification("Order", "Este pedido não possui itens");
             }
