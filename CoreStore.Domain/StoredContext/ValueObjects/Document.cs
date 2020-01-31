@@ -13,7 +13,7 @@ namespace CoreStore.Domain.StoredContext.ValueObjects
             Number = number;
 
             AddNotifications(new ValidationContract()
-                .IsTrue(Validate(Number), "Document", "CPF inálido")
+                .IsTrue(Validate(Number), "Document", "CPF inválido")
                 );
 
         }
