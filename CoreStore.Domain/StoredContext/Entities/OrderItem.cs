@@ -11,10 +11,12 @@ namespace CoreStore.Domain.StoredContext.Entities
             Quantity = quantity;
             Price = product.Price;
 
-            if(product.QuantityOnHand < quantity)
+            if (product.QuantityOnHand < quantity)
             {
                 AddNotification("Quantity", "Produto fora de Estoque");
             }
+
+            product.DecreaseQuantity(quantity);
         }
         public Product Product { get; private set; }
         public decimal Quantity { get; private set; }

@@ -27,6 +27,11 @@ namespace CoreStore.Domain.StoredContext.Entities
         {
             return Title;
         }
+
+        public void DecreaseQuantity(decimal quantity)
+        {
+            QuantityOnHand -= quantity;
+        }
     }
 
 }
