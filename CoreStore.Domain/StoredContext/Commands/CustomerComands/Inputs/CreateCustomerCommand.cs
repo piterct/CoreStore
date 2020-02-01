@@ -11,7 +11,7 @@ namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
         public string LastName { get; set; }
         public string Document { get; set; }
         public string Email { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         public bool Valid()
         {
@@ -23,7 +23,7 @@ namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
                        .IsEmail(Email, "Email", "O E-mail é inválido")
                        .HasLen(Document, 11, "Document", "CPF inválido"));
 
-            return Valid();
+            return IsValid;
         }
     }
 

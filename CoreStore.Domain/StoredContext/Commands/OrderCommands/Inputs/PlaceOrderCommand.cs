@@ -18,11 +18,11 @@ namespace CoreStore.Domain.StoredContext.Commands.OrderCommands.Inputs
         public bool Valid()
         {
             AddNotifications(new ValidationContract()
-                      .HasLen(Customer.ToString(), 36, "Customer", "Identificador do client inválido")
+                      .HasLen(Customer.ToString(), 36, "Customer", "Identificador do cliente inválido")
                       .IsGreaterThan(OrderItems.Count, 0, "Items", "Nenhum item do pedido foi encontrado")
                       );
 
-            return Valid();
+            return IsValid;
         }
     }
 
