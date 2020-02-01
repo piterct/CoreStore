@@ -1,11 +1,13 @@
 ﻿using CoreStore.Domain.StoredContext.Enums;
+using CoreStore.Shared.Commands;
+using FluentValidator;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
 {
-    public class AddAdressCommand
+    public class AddAdressCommand : Notifiable, ICommand
     {
         public Guid Id { get; set; }
         public string Street { get; set; }
@@ -17,5 +19,10 @@ namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
         public string Country { get; set; }
         public string ZipCode { get; set; }
         public EAddressType Type { get; set; }
+
+        public bool Valid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

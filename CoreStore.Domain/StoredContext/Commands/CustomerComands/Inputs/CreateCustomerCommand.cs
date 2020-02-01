@@ -1,9 +1,10 @@
-﻿using FluentValidator;
+﻿using CoreStore.Shared.Commands;
+using FluentValidator;
 using FluentValidator.Validation;
 
 namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
 {
-    public class CreateCustomerCommand : Notifiable
+    public class CreateCustomerCommand : Notifiable, ICommand
     {
 
         public string FirstName { get; set; }
