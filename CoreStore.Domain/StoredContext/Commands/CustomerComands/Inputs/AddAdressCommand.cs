@@ -22,7 +22,7 @@ namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
 
         public bool Valid()
         {
-            throw new NotImplementedException();
+            return IsValid;
         }
     }
 }
