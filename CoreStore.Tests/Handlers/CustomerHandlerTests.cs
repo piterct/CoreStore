@@ -18,9 +18,11 @@ namespace CoreStore.Tests.Handlers
             command.Email = "michael.developer@gmail.com";
             command.Phone = "11999999999";
 
-            Assert.AreEqual(true, command.Valid());
-
             var handle = new CustomerHandler(new FakeCustomerRepository(), new FakeEmailService());
+            var result = handle.Handle(command);
+
+            Assert.AreNotEqual(null, result);
+            Assert.AreEqual(true, handle.IsValid);
         }
 
     }
