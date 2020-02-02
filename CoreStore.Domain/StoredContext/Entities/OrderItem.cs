@@ -1,9 +1,8 @@
-﻿using FluentValidator;
-using System.Collections.Generic;
+﻿using CoreStore.Shared.Entities;
 
 namespace CoreStore.Domain.StoredContext.Entities
 {
-    public class OrderItem : Notifiable
+    public class OrderItem : Entity
     {
         public OrderItem(Product product, decimal quantity)
         {

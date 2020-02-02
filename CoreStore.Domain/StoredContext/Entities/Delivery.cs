@@ -1,10 +1,11 @@
 ﻿using CoreStore.Domain.StoredContext.Enums;
+using CoreStore.Shared.Entities;
 using FluentValidator;
 using System;
 
 namespace CoreStore.Domain.StoredContext.Entities
 {
-    public class Delivery : Notifiable
+    public class Delivery : Entity
     {
         public Delivery(DateTime estimatedDeliveryDate)
         {
