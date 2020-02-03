@@ -4,4 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Scripts\Procedures\spCheckEmail_20171118_001.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Scripts\Procedures\spCheckEmail_20171118_001.sql" />
+  </ItemGroup>
+
 </Project>
