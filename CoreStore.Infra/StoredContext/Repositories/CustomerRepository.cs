@@ -1,4 +1,5 @@
 ﻿using CoreStore.Domain.StoredContext.Entities;
+using CoreStore.Domain.StoredContext.Queries;
 using CoreStore.Domain.StoredContext.Repositories;
 using CoreStore.Infra.StoredContext.DataContexts;
 using Dapper;
@@ -35,6 +36,17 @@ namespace CoreStore.Infra.StoredContext.Repositories
                 .Query<bool>(
                     "spCheckEmail",
                     new { Email = email },
+                    commandType: CommandType.StoredProcedure)
+                .FirstOrDefault();
+        }
+
+        public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
+        {
+            return _context
+                .Connection
+                .Query<CustomerOrdersCountResult>(
+                    "spGetCustomerOrdersCount",
+                    new { Document = document },
                     commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }

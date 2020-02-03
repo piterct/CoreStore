@@ -1,4 +1,5 @@
 ﻿using CoreStore.Domain.StoredContext.Entities;
+using CoreStore.Domain.StoredContext.Queries;
 using CoreStore.Domain.StoredContext.Repositories;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace CoreStore.Tests.Fakes
         public void Save(Customer customer)
         {
             
+        }
+
+        public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
+        {
+            throw new NotImplementedException();
         }
     }
 }
