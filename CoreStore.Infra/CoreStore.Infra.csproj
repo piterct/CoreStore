@@ -5,11 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\Procedures\spCheckEmail_20171118_001.sql" />
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Scripts\Procedures\spCheckEmail_20171118_001.sql" />
+    <Folder Include="StoredContext\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreStore.Shared\CoreStore.Shared.csproj" />
   </ItemGroup>
 
 </Project>
