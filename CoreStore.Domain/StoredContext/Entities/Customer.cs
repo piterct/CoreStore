@@ -1,11 +1,11 @@
 ﻿using CoreStore.Domain.StoredContext.ValueObjects;
-using FluentValidator;
+using CoreStore.Shared.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CoreStore.Domain.StoredContext.Entities
 {
-    public class Customer : Notifiable
+    public class Customer : Entity
     {
         private readonly IList<Address> _addresses;
         public Customer(Name name,

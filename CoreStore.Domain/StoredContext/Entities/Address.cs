@@ -1,12 +1,9 @@
 ﻿using CoreStore.Domain.StoredContext.Enums;
-using FluentValidator;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using CoreStore.Shared.Entities;
 
 namespace CoreStore.Domain.StoredContext.Entities
 {
-    public class Address : Notifiable
+    public class Address : Entity
     {
         public Address(string street,
             string number,
