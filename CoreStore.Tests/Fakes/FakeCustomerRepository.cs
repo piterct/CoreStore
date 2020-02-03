@@ -13,7 +13,7 @@ namespace CoreStore.Tests.Fakes
             return false;
         }
 
-        public bool CustomerDcoument(string document)
+        public bool CheckDocument(string document)
         {
             return false;
         }

@@ -10,10 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="StoredContext\Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\CoreStore.Domain\CoreStore.Domain.csproj" />
     <ProjectReference Include="..\CoreStore.Shared\CoreStore.Shared.csproj" />
   </ItemGroup>
 

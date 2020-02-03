@@ -7,7 +7,7 @@ namespace CoreStore.Domain.StoredContext.Repositories
 {
     public interface ICustomerRepository
     {
-        bool CustomerDcoument(string document);
+        bool CheckDocument(string document);
         bool CheckEmail(string email);
         void Save(Customer customer);
     }

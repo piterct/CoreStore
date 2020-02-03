@@ -25,11 +25,11 @@ namespace CoreStore.Domain.StoredContext.Handlers
         public ICommandResult Handle(CreateCustomerCommand command)
         {
             // Verificar se o CPF já existe na base
-            if (_repository.CustomerDcoument(command.Document))
+            if (_repository.CheckDocument(command.Document))
                 AddNotification("Document", "Este CPF já está em uso");
 
             //Verificar se o E-mail já existe na base
-            if (_repository.CustomerDcoument(command.Email))
+            if (_repository.CheckEmail(command.Email))
                 AddNotification("Email", "Este Email já está em uso");
 
 
