@@ -48,7 +48,9 @@ namespace CoreStore.Domain.StoredContext.Handlers
             AddNotifications(customer.Notifications);
 
             if (Invalid)
-                return null;
+                return new CommandResult(false,
+                    "Por favor, corriga os campos abaixo",
+                    Notifications);
 
             // Persistir o cliente
             _repository.Save(customer);
@@ -57,7 +59,12 @@ namespace CoreStore.Domain.StoredContext.Handlers
             _emailService.Send(email.Address, "hello@developer.com", "Bem vindo", "Seja Bem vindo ao Core Store!");
 
             //Retornar o resultado para tela
-            return new CreateCustomerCommandResult(customer.Id, name.ToString(), email.Address);
+            return new CommandResult(true, "Bem vindo ao Balta Store", new
+            {
+                Id = customer.Id,
+                Name = name.ToString(),
+                Email = email.ToString()
+            });
         }
 
         public ICommandResult Handle(AddAdressCommand command)

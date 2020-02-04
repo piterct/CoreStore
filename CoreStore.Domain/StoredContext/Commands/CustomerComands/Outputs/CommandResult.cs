@@ -1,12 +1,13 @@
 ﻿using CoreStore.Shared.Commands;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Outputs
 {
-    public class CreateCustomerCommandResult : ICommandResult
+    public class CommandResult : ICommandResult
     {
-
-        public CreateCustomerCommandResult(bool sucess, string message, object data)
+        public CommandResult(bool sucess, string message, object data)
         {
             Sucess = sucess;
             Message = message;
