@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreStore.Domain\CoreStore.Domain.csproj" />
+    <ProjectReference Include="..\CoreStore.Infra\CoreStore.Infra.csproj" />
     <ProjectReference Include="..\CoreStore.Shared\CoreStore.Shared.csproj" />
   </ItemGroup>
 
