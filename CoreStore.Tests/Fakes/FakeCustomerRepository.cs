@@ -28,5 +28,20 @@ namespace CoreStore.Tests.Fakes
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<ListCustomerQueryResult> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public GetCustomerQueryResult Get(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

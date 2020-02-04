@@ -3,6 +3,8 @@ using CoreStore.Domain.StoredContext.Queries;
 using CoreStore.Domain.StoredContext.Repositories;
 using CoreStore.Infra.StoredContext.DataContexts;
 using Dapper;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -40,6 +42,23 @@ namespace CoreStore.Infra.StoredContext.Repositories
                 .FirstOrDefault();
         }
 
+        public IEnumerable<ListCustomerQueryResult> Get()
+        {
+            return _context
+                .Connection
+                .Query<ListCustomerQueryResult>(
+                    "SELECT[Id], CONCAT([FirstName], '', [Lastname]) AS [Name], [Document], [Email] FROM Customer");
+        }
+
+        public GetCustomerQueryResult Get(Guid Id)
+        {
+            return _context
+                .Connection
+                .Query<GetCustomerQueryResult>(
+                    "SELECT[Id], CONCAT([FirstName], '', [Lastname]) AS [Name], [Document], [Email] FROM Customer WHERE [Id] = @Id ",
+                    new { Id = Id }).FirstOrDefault();
+        }
+
         public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
         {
             return _context
@@ -50,6 +69,14 @@ namespace CoreStore.Infra.StoredContext.Repositories
                     commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }
+
+        public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid Id)
+        {
+            return _context
+               .Connection
+               .Query<ListCustomerOrdersQueryResult>("", new { id = Id });
+        }
+
 
         public void Save(Customer customer)
         {

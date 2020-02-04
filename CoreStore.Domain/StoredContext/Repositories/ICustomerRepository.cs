@@ -12,5 +12,8 @@ namespace CoreStore.Domain.StoredContext.Repositories
         bool CheckEmail(string email);
         void Save(Customer customer);
         CustomerOrdersCountResult GetCustomerOrdersCount(string document);
+        IEnumerable<ListCustomerQueryResult> Get();
+        GetCustomerQueryResult Get(Guid Id);
+        IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid Id);
     }
 }
