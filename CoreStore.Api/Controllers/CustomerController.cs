@@ -5,7 +5,6 @@ using CoreStore.Domain.StoredContext.Handlers;
 using CoreStore.Domain.StoredContext.Queries;
 using CoreStore.Domain.StoredContext.Repositories;
 using CoreStore.Domain.StoredContext.ValueObjects;
-using CoreStore.Shared.Commands;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,29 +22,36 @@ namespace CoreStore.Api.Controllers
         }
 
         [HttpGet]
-        [Route("customers")]
+        [Route("v1/customers")]
         public IEnumerable<ListCustomerQueryResult> Get()
         {
             return _repository.Get();
         }
 
         [HttpGet]
-        [Route("customers/{id}")]
+        [Route("v1/customers/{id}")]
         public GetCustomerQueryResult GetById(Guid id)
         {
             return _repository.Get(id);
         }
 
+        [HttpGet]
+        [Route("v2/customers/{document}")]
+        public GetCustomerQueryResult GetByDocument(Guid document)
+        {
+            return _repository.Get(document);
+        }
+
 
         [HttpGet]
-        [Route("customers/{id}/orders")]
+        [Route("v1/customers/{id}/orders")]
         public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid id)
         {
             return _repository.GetOrders(id);
         }
 
         [HttpPost]
-        [Route("customers")]
+        [Route("v1/customers")]
         public object Post([FromBody]CreateCustomerCommand command)
         {
             var result = (CreateCustomerCommandResult)_handler.Handle(command);
@@ -56,7 +62,7 @@ namespace CoreStore.Api.Controllers
         }
 
         [HttpPut]
-        [Route("customers/{id}")]
+        [Route("v1/customers/{id}")]
         public Customer Put([FromBody]CreateCustomerCommand command)
         {
             var name = new Name(command.FirstName, command.LastName);
@@ -68,7 +74,7 @@ namespace CoreStore.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("customers/{id}")]
+        [Route("v1/customers/{id}")]
         public object Delete()
         {
             return new { message = "Cliente removido com sucesso!" };
