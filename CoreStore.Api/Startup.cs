@@ -18,6 +18,8 @@ namespace CoreStore.Api
         {
             services.AddMvc();
 
+            services.AddResponseCompression();
+
             services.AddScoped<CoreDataContext, CoreDataContext>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IEmailService, EmailService>();
@@ -30,6 +32,7 @@ namespace CoreStore.Api
                 app.UseDeveloperExceptionPage();
 
             app.UseMvc();
+            app.UseResponseCompression();
         }
     }
 }

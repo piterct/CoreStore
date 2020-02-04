@@ -47,7 +47,7 @@ namespace CoreStore.Infra.StoredContext.Repositories
             return _context
                 .Connection
                 .Query<ListCustomerQueryResult>(
-                    "SELECT[Id], CONCAT([FirstName], '', [Lastname]) AS [Name], [Document], [Email] FROM Customer");
+                    "SELECT[Id], CONCAT([FirstName], ' ', [Lastname]) AS [Name], [Document], [Email] FROM Customer");
         }
 
         public GetCustomerQueryResult Get(Guid Id)
@@ -55,7 +55,7 @@ namespace CoreStore.Infra.StoredContext.Repositories
             return _context
                 .Connection
                 .Query<GetCustomerQueryResult>(
-                    "SELECT[Id], CONCAT([FirstName], '', [Lastname]) AS [Name], [Document], [Email] FROM Customer WHERE [Id] = @Id ",
+                    "SELECT[Id], CONCAT([FirstName], ' ', [Lastname]) AS [Name], [Document], [Email] FROM Customer WHERE [Id] = @Id ",
                     new { Id = Id }).FirstOrDefault();
         }
 
