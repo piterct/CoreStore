@@ -23,6 +23,8 @@ namespace CoreStore.Api.Controllers
 
         [HttpGet]
         [Route("v1/customers")]
+        [ResponseCache(Duration = 60)]
+        // Cache-Control: public,max-age=60
         public IEnumerable<ListCustomerQueryResult> Get()
         {
             return _repository.Get();
