@@ -1,8 +1,11 @@
 ﻿using CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs;
+using CoreStore.Domain.StoredContext.Commands.CustomerComands.Outputs;
 using CoreStore.Domain.StoredContext.Entities;
+using CoreStore.Domain.StoredContext.Handlers;
 using CoreStore.Domain.StoredContext.Queries;
 using CoreStore.Domain.StoredContext.Repositories;
 using CoreStore.Domain.StoredContext.ValueObjects;
+using CoreStore.Shared.Commands;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,9 +15,11 @@ namespace CoreStore.Api.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerRepository _repository;
-        public CustomerController(ICustomerRepository repository)
+        private readonly CustomerHandler _handler;
+        public CustomerController(ICustomerRepository repository, CustomerHandler handler)
         {
             _repository = repository;
+            _handler = handler;
         }
 
         [HttpGet]
@@ -41,14 +46,13 @@ namespace CoreStore.Api.Controllers
 
         [HttpPost]
         [Route("customers")]
-        public Customer Post([FromBody]CreateCustomerCommand command)
+        public object Post([FromBody]CreateCustomerCommand command)
         {
-            var name = new Name(command.FirstName, command.LastName);
-            var document = new Document(command.Document);
-            var email = new Email(command.Email);
-            var customer = new Customer(name, document, email, command.Phone);
+            var result = (CreateCustomerCommandResult)_handler.Handle(command);
+            if (_handler.Invalid)
+                return BadRequest(_handler.Notifications);
 
-            return customer;
+            return result;
         }
 
         [HttpPut]

@@ -1,4 +1,5 @@
-﻿using CoreStore.Domain.StoredContext.Repositories;
+﻿using CoreStore.Domain.StoredContext.Handlers;
+using CoreStore.Domain.StoredContext.Repositories;
 using CoreStore.Domain.StoredContext.Services;
 using CoreStore.Infra.StoredContext.DataContexts;
 using CoreStore.Infra.StoredContext.Repositories;
@@ -20,6 +21,7 @@ namespace CoreStore.Api
             services.AddScoped<CoreDataContext, CoreDataContext>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<CustomerHandler, CustomerHandler>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
