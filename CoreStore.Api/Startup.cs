@@ -28,6 +28,8 @@ namespace CoreStore.Api
 
             Configuration = builder.Build();
 
+            services.AddApplicationInsightsTelemetry(Configuration);
+
             services.AddMvc();
 
             services.AddResponseCompression();
