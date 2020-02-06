@@ -57,7 +57,7 @@ namespace CoreStore.Api.Controllers
         [Route("v1/customers")]
         public ICommandResult Post([FromBody]CreateCustomerCommand command)
         {
-            var result = (CreateCustomerCommandResult)_handler.Handle(command);
+            var result = _handler.Handle(command);
             return result;
         }
 
