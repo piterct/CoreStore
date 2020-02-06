@@ -51,24 +51,29 @@ namespace CoreStore.Domain.StoredContext.Handlers
                 AddNotifications(customer.Notifications);
 
                 if (Invalid)
+                {
                     return new CommandResult(false,
                         "Por favor, corriga os campos abaixo",
                         Notifications);
+                }
 
-                // Persistir o cliente
-                _repository.Save(customer);
-
-                // Enviar um E-mail de boas vindas
-                _emailService.Send(email.Address, "hello@developer.com", "Bem vindo", "Seja Bem vindo ao Core Store!");
-
-                //Retornar o resultado para tela
-                return new CommandResult(true, "Bem vindo ao Balta Store", new
+                else
                 {
-                    Id = customer.Id,
-                    Name = name.ToString(),
-                    Email = email.ToString()
-                });
+                    // Persistir o cliente
+                    _repository.Save(customer);
 
+                    // Enviar um E-mail de boas vindas
+                    //  _emailService.Send(email.Address, "hello@developer.com", "Bem vindo", "Seja Bem vindo ao Core Store!");
+
+                    //Retornar o resultado para tela
+                    return new CommandResult(true, "Bem vindo ao Core Store", new
+                    {
+                        Id = customer.Id,
+                        Name = name.ToString(),
+                        Email = email.ToString(),
+                        BoasVindas = string.Format("{0}, Seja Bem vindo ao Core Store!", customer.Name)
+                    }); ;
+                }
             }
             else
             {

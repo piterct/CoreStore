@@ -25,7 +25,7 @@ namespace CoreStore.Domain.StoredContext.ValueObjects
 
         public override string ToString()
         {
-            return $"{FirstName}{LastName}";
+            return $"{FirstName}  {LastName}";
         }
     }
 }
