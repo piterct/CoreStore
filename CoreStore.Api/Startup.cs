@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Elmah.Io.AspNetCore;
+using System.IO;
 using System;
 
 namespace CoreStore.Api
@@ -36,6 +38,12 @@ namespace CoreStore.Api
                     Contact = new OpenApiContact() { Name = "CoreStore", Email = "michael.peter@developer.com.br"  }
                 });
             });
+
+            services.AddElmahIo(o =>
+            {
+                o.ApiKey = "f3b501c8dc22437cb0c710aca44d9a60";
+                o.LogId = new Guid("5233fefc-0472-46b0-a028-c8717d5926c4");
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -51,6 +59,8 @@ namespace CoreStore.Api
             {
                 x.SwaggerEndpoint("/swagger/v1/swagger.json", "Core Store - V1");
             });
+
+            app.UseElmahIo();
         }
     }
 }
