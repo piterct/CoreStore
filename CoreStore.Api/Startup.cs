@@ -9,16 +9,25 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Elmah.Io.AspNetCore;
-using System.IO;
+using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
+using CoreStore.Shared;
 
 namespace CoreStore.Api
 {
     public class Startup
     {
+        public static IConfiguration Configuration { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
+
             services.AddMvc();
 
             services.AddResponseCompression();
@@ -35,7 +44,7 @@ namespace CoreStore.Api
                     Version = "v1",
                     Title = "Core Store",
                     Description = "API em .net core",
-                    Contact = new OpenApiContact() { Name = "CoreStore", Email = "michael.peter@developer.com.br"  }
+                    Contact = new OpenApiContact() { Name = "CoreStore", Email = "michael.peter@developer.com.br" }
                 });
             });
 
@@ -44,6 +53,8 @@ namespace CoreStore.Api
                 o.ApiKey = "f3b501c8dc22437cb0c710aca44d9a60";
                 o.LogId = new Guid("5233fefc-0472-46b0-a028-c8717d5926c4");
             });
+
+            Settings.ConnectionString = $"{Configuration["connectionString"]}";
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
