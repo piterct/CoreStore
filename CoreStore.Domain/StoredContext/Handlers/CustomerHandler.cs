@@ -1,6 +1,7 @@
 ﻿using CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs;
 using CoreStore.Domain.StoredContext.Commands.CustomerComands.Outputs;
 using CoreStore.Domain.StoredContext.Entities;
+using CoreStore.Domain.StoredContext.Queries;
 using CoreStore.Domain.StoredContext.Repositories;
 using CoreStore.Domain.StoredContext.Services;
 using CoreStore.Domain.StoredContext.ValueObjects;
@@ -101,6 +102,19 @@ namespace CoreStore.Domain.StoredContext.Handlers
         public ICommandResult Handle(AddAdressCommand command)
         {
             throw new NotImplementedException();
+        }
+
+        public GetCustomerQueryResult GetByDocument(Guid document)
+        {
+            try
+            {
+                return _repository.Get(document);
+            }
+
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

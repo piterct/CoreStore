@@ -42,7 +42,7 @@ namespace CoreStore.Api.Controllers
         [Route("v2/customers/{document}")]
         public GetCustomerQueryResult GetByDocument(Guid document)
         {
-            return _repository.Get(document);
+            return _handler.GetByDocument(document);
         }
 
 
