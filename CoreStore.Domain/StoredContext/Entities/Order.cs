@@ -66,7 +66,7 @@ namespace CoreStore.Domain.StoredContext.Entities
             var count = 1;
 
             // Quebra as entregas
-            foreach (var item in _items)
+            foreach (OrderItem item in _items)
             {
                 if (count == 5)
                 {
