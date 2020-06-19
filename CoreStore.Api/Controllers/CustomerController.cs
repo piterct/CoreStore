@@ -12,6 +12,8 @@ using System.Collections.Generic;
 
 namespace CoreStore.Api.Controllers
 {
+    [ApiController]
+    [Route("customers")]
     public class CustomerController : Controller
     {
         private readonly ICustomerRepository _repository;
@@ -55,7 +57,7 @@ namespace CoreStore.Api.Controllers
 
         [HttpPost]
         [Route("v1/customers")]
-        public ICommandResult Post([FromBody]CreateCustomerCommand command)
+        public ICommandResult Post([FromBody] CreateCustomerCommand command)
         {
             var result = _handler.Handle(command);
             return result;
@@ -63,7 +65,7 @@ namespace CoreStore.Api.Controllers
 
         [HttpPut]
         [Route("v1/customers/{id}")]
-        public Customer Put([FromBody]CreateCustomerCommand command)
+        public Customer Put([FromBody] CreateCustomerCommand command)
         {
             var name = new Name(command.FirstName, command.LastName);
             var document = new Document(command.Document);

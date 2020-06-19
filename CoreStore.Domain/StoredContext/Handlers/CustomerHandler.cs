@@ -91,11 +91,11 @@ namespace CoreStore.Domain.StoredContext.Handlers
             if (string.IsNullOrEmpty(command.LastName))
                 AddNotification("LastName", "Preencha o parâmetro LastName");
             if (string.IsNullOrEmpty(command.Document))
-                AddNotification("LastName", "Preencha o parâmetro Document");
+                AddNotification("Document", "Preencha o parâmetro Document");
             if (string.IsNullOrEmpty(command.Email))
-                AddNotification("LastName", "Preencha o parâmetro Email");
+                AddNotification("Email", "Preencha o parâmetro Email");
             if (string.IsNullOrEmpty(command.Phone))
-                AddNotification("LastName", "Preencha o parâmetro Phone");
+                AddNotification("Phone", "Preencha o parâmetro Phone");
 
         }
 

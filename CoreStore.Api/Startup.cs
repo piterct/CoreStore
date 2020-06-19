@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using CoreStore.Shared;
+using CoreStore.Api.Helpers.DependencyInjectionConfig;
 
 namespace CoreStore.Api
 {
@@ -33,12 +34,7 @@ namespace CoreStore.Api
             services.AddMvc();
 
             services.AddResponseCompression();
-
-            services.AddScoped<CoreDataContext, CoreDataContext>();
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<IEmailService, EmailService>();
-            services.AddTransient<CustomerHandler, CustomerHandler>();
-
+         
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
@@ -57,6 +53,15 @@ namespace CoreStore.Api
             });
 
             Settings.ConnectionString = $"{Configuration["connectionString"]}";
+
+            ConfigureDI(services, Configuration);
+
+        }
+
+        public static void ConfigureDI(IServiceCollection services, IConfiguration configuration)
+        {
+            //sign the services to di container   
+            DependencyRegister.AddScoped(services, configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
