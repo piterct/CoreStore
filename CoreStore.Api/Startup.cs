@@ -34,7 +34,7 @@ namespace CoreStore.Api
             services.AddMvc();
 
             services.AddResponseCompression();
-         
+
             services.AddSwaggerGen(x =>
             {
                 x.SwaggerDoc("v1", new OpenApiInfo
@@ -51,8 +51,6 @@ namespace CoreStore.Api
                 o.ApiKey = "f3b501c8dc22437cb0c710aca44d9a60";
                 o.LogId = new Guid("5233fefc-0472-46b0-a028-c8717d5926c4");
             });
-
-            Settings.ConnectionString = $"{Configuration["connectionString"]}";
 
             ConfigureDI(services, Configuration);
 

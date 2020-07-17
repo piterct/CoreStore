@@ -1,4 +1,5 @@
 ﻿using CoreStore.Shared;
+using Microsoft.Extensions.Options;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,11 +8,13 @@ namespace CoreStore.Infra.StoredContext.DataContexts
 {
     public class CoreDataContext : IDisposable
     {
+        private readonly IOptions<Settings> _config;
         public SqlConnection Connection { get; set; }
 
-        public CoreDataContext()
+        public CoreDataContext(IOptions<Settings> config)
         {
-            Connection = new SqlConnection(Settings.ConnectionString);
+            _config = config;
+            Connection = new SqlConnection(_config.Value.ConnectionString);
             Connection.Open();
         }
 
