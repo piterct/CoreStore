@@ -40,6 +40,15 @@ namespace CoreStore.Api.Controllers
             return _repository.Get(id);
         }
 
+
+        [HttpPost]
+        [Route("v1/customers/addListCustomers")]
+        public bool AddListCustomers([FromBody] ListCreateCustomersCommand customers)
+        {
+            return _handler.AddListCustomers(customers);
+
+        }
+
         [HttpGet]
         [Route("v2/customers/{document}")]
         public GetCustomerQueryResult GetByDocument(Guid document)

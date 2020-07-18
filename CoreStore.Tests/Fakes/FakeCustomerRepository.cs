@@ -1,4 +1,5 @@
-﻿using CoreStore.Domain.StoredContext.Entities;
+﻿using CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs;
+using CoreStore.Domain.StoredContext.Entities;
 using CoreStore.Domain.StoredContext.Queries;
 using CoreStore.Domain.StoredContext.Repositories;
 using System;
@@ -40,6 +41,11 @@ namespace CoreStore.Tests.Fakes
         }
 
         public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddListCustomers(IList<ListCreateCustomersCommand> customers)
         {
             throw new NotImplementedException();
         }

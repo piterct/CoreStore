@@ -8,6 +8,7 @@ using CoreStore.Domain.StoredContext.ValueObjects;
 using CoreStore.Shared.Commands;
 using FluentValidator;
 using System;
+using System.Collections.Generic;
 
 namespace CoreStore.Domain.StoredContext.Handlers
 {
@@ -104,6 +105,21 @@ namespace CoreStore.Domain.StoredContext.Handlers
             throw new NotImplementedException();
         }
 
+        public bool AddListCustomers(ListCreateCustomersCommand customers)
+        {
+            try
+            {
+                var addCustomerResult = _repository.AddListCustomersInBulk(customers);
+                return addCustomerResult == 0 ? false : true;
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
         public GetCustomerQueryResult GetByDocument(Guid document)
         {
             try
@@ -111,7 +127,7 @@ namespace CoreStore.Domain.StoredContext.Handlers
                 return _repository.Get(document);
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

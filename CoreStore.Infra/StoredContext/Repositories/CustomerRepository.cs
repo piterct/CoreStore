@@ -1,4 +1,5 @@
-﻿using CoreStore.Domain.StoredContext.Entities;
+﻿using CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs;
+using CoreStore.Domain.StoredContext.Entities;
 using CoreStore.Domain.StoredContext.Queries;
 using CoreStore.Domain.StoredContext.Repositories;
 using CoreStore.Infra.StoredContext.DataContexts;
@@ -116,32 +117,36 @@ namespace CoreStore.Infra.StoredContext.Repositories
             }
         }
 
-        public async Task InsertInBulk(IList<string> userNames)
+        public int AddListCustomersInBulk(ListCreateCustomersCommand customers)
         {
-            var sqls = GetSqlsInBatches(userNames);
+            var sqls = GetCustomerSqlsInBatches(customers.Customers);
+            var resultExecute = 0;
+
             using (var connection = new SqlConnection(_config.Value.ConnectionString))
             {
                 foreach (var sql in sqls)
                 {
-                    await connection.ExecuteAsync(sql);
+                    resultExecute = connection.ExecuteAsync(sql).Result;
                 }
             }
+
+            return resultExecute;
         }
 
-        private IList<string> GetSqlsInBatches(IList<string> userNames)
+        private IList<string> GetCustomerSqlsInBatches(IList<CreateCustomerCommand> customers)
         {
-            var insertSql = "INSERT INTO [Users] (Name, LastUpdatedAt) VALUES ";
-            var valuesSql = "('{0}', getdate())";
+            var insertSql = "INSERT INTO [Customer] (Id, FirstName, LastName, Document, Email, Phone) VALUES ";
+            var valuesSql = "('{0}', '{1}', '{2}' , '{3}', '{4}', '{5}')";
             var batchSize = 1000;
 
             var sqlsToExecute = new List<string>();
-            var numberOfBatches = (int)Math.Ceiling((double)userNames.Count / batchSize);
+            var numberOfBatches = (int)Math.Ceiling((double)customers.Count / batchSize);
 
-            for (int i = 0; i < numberOfBatches; i++)
+
+            for (int i = 0; i <= numberOfBatches; i++)
             {
-                var userToInsert = userNames.Skip(i * batchSize).Take(batchSize);
-                var valuesToInsert = userToInsert.Select(u => string.Format(valuesSql, u));
-                sqlsToExecute.Add(insertSql + string.Join(",", valuesToInsert));
+                var valuesToInsert = string.Format(valuesSql, customers[i].Id, customers[i].FirstName, customers[i].LastName, customers[i].Document, customers[i].Email, customers[i].Phone);
+                sqlsToExecute.Add(string.Concat(insertSql, valuesToInsert));
             }
 
             return sqlsToExecute;

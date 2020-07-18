@@ -1,12 +1,18 @@
 ﻿using CoreStore.Shared.Commands;
 using FluentValidator;
 using FluentValidator.Validation;
+using System;
 
 namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
 {
     public class CreateCustomerCommand : Notifiable, ICommand
     {
+        public CreateCustomerCommand()
+        {
+            Id = Guid.NewGuid();
+        }
 
+        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Document { get; set; }
