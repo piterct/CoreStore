@@ -10,6 +10,7 @@ namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
         public CreateCustomerCommand()
         {
             Id = Guid.NewGuid();
+            DateRegister = DateTime.Now;
         }
 
         public Guid Id { get; set; }
@@ -18,6 +19,7 @@ namespace CoreStore.Domain.StoredContext.Commands.CustomerComands.Inputs
         public string Document { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public DateTime DateRegister { get; set; }
 
         public bool Valid()
         {

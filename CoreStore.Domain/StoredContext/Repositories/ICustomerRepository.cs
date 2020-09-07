@@ -18,5 +18,6 @@ namespace CoreStore.Domain.StoredContext.Repositories
         GetCustomerQueryResult Get(Guid Id);
         IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid Id);
         int AddListCustomersInBulk(ListCreateCustomersCommand customers);
+        Task<int> TaskAddListCustomersInBulk(ListCreateCustomersCommand customers);
     }
 }

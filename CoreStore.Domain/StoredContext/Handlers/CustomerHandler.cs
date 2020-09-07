@@ -9,6 +9,8 @@ using CoreStore.Shared.Commands;
 using FluentValidator;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CoreStore.Domain.StoredContext.Handlers
 {
@@ -120,6 +122,23 @@ namespace CoreStore.Domain.StoredContext.Handlers
 
         }
 
+        public async Task<bool> TaskAddListCustomers(ListCreateCustomersCommand customers)
+        {
+            try
+            {
+                var getNameCustomer = NameCustomer(customers.Customers[0].FirstName);
+                var addCustomerResult = _repository.TaskAddListCustomersInBulk(customers);
+
+                return addCustomerResult.Result == 0 ? false : true;
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
         public GetCustomerQueryResult GetByDocument(Guid document)
         {
             try
@@ -131,6 +150,18 @@ namespace CoreStore.Domain.StoredContext.Handlers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        private async Task<string> NameCustomer(string nameCustomer)
+        {
+            for (int i = 0; i < 1000000000; i++)
+                if (i > 10000000)
+                {
+                    await Task.Delay(2000);
+                    return nameCustomer;
+                }
+
+            return nameCustomer;
         }
     }
 }

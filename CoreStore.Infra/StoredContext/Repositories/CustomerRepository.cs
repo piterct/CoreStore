@@ -133,10 +133,30 @@ namespace CoreStore.Infra.StoredContext.Repositories
             return resultExecute;
         }
 
+
+        public async Task<int> TaskAddListCustomersInBulk(ListCreateCustomersCommand customers)
+        {
+            var sqls = GetCustomerSqlsInBatches(customers.Customers);
+            int execute = 1;
+
+
+            using (var connection = new SqlConnection(_config.Value.ConnectionString))
+            {
+                foreach (var sql in sqls)
+                {
+                    execute = connection.ExecuteAsync(sql).Result;
+                }
+            }
+
+            await Task.Delay(2000);
+
+            return execute;
+        }
+
         private IList<string> GetCustomerSqlsInBatches(IList<CreateCustomerCommand> customers)
         {
-            var insertSql = "INSERT INTO [Customer] (Id, FirstName, LastName, Document, Email, Phone) VALUES ";
-            var valuesSql = "('{0}', '{1}', '{2}' , '{3}', '{4}', '{5}')";
+            var insertSql = "INSERT INTO [Customer] (Id, FirstName, LastName, Document, Email, Phone, DateRegister) VALUES ";
+            var valuesSql = "('{0}', '{1}', '{2}' , '{3}', '{4}', '{5}', '{6}')";
             var batchSize = 1000;
 
             var sqlsToExecute = new List<string>();
@@ -145,7 +165,7 @@ namespace CoreStore.Infra.StoredContext.Repositories
 
             for (int i = 0; i <= numberOfBatches; i++)
             {
-                var valuesToInsert = string.Format(valuesSql, customers[i].Id, customers[i].FirstName, customers[i].LastName, customers[i].Document, customers[i].Email, customers[i].Phone);
+                var valuesToInsert = string.Format(valuesSql, customers[i].Id, customers[i].FirstName, customers[i].LastName, customers[i].Document, customers[i].Email, customers[i].Phone, customers[i].DateRegister);
                 sqlsToExecute.Add(string.Concat(insertSql, valuesToInsert));
             }
 

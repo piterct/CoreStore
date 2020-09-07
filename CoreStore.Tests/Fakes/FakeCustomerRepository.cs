@@ -5,6 +5,7 @@ using CoreStore.Domain.StoredContext.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CoreStore.Tests.Fakes
 {
@@ -46,6 +47,16 @@ namespace CoreStore.Tests.Fakes
         }
 
         public int AddListCustomers(IList<ListCreateCustomersCommand> customers)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddListCustomersInBulk(ListCreateCustomersCommand customers)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> TaskAddListCustomersInBulk(ListCreateCustomersCommand customers)
         {
             throw new NotImplementedException();
         }

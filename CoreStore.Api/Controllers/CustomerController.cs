@@ -9,6 +9,7 @@ using CoreStore.Shared.Commands;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CoreStore.Api.Controllers
 {
@@ -46,6 +47,14 @@ namespace CoreStore.Api.Controllers
         public bool AddListCustomers([FromBody] ListCreateCustomersCommand customers)
         {
             return _handler.AddListCustomers(customers);
+
+        }
+
+        [HttpPost]
+        [Route("v2/customers/addListCustomers")]
+        public async Task<bool> TaskAddListCustomers([FromBody] ListCreateCustomersCommand customers)
+        {
+            return await _handler.TaskAddListCustomers(customers);
 
         }
 
